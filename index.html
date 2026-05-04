@@ -54,8 +54,15 @@
   .section-header h2 .accent { color: var(--maize); }
   .section-header p { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; color: var(--gray); margin-top: 0.75rem; letter-spacing: 0.05em; }
 
+  /* SEARCH */
+  .search-wrap { max-width: 480px; margin: 0 auto; padding: 0 2rem 1.5rem; position: relative; }
+  .search-input { width: 100%; background: var(--mid); border: 1px solid rgba(255,203,5,0.25); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; letter-spacing: 0.08em; padding: 0.75rem 1rem 0.75rem 2.75rem; outline: none; transition: border-color 0.2s; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); }
+  .search-input::placeholder { color: var(--gray); }
+  .search-input:focus { border-color: var(--maize); }
+  .search-icon { position: absolute; left: 2.9rem; top: 50%; transform: translateY(-50%); color: var(--gray); font-size: 1rem; pointer-events: none; }
+
   /* CATEGORY TABS */
-  .category-tabs { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; padding: 1.5rem 2rem 2.5rem; }
+  .category-tabs { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; padding: 0.5rem 2rem 2.5rem; }
   .cat-tab { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 1.25rem; background: transparent; border: 1px solid rgba(255,203,5,0.3); color: var(--gray); cursor: pointer; transition: all 0.2s; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%); }
   .cat-tab:hover { border-color: var(--maize); color: var(--white); }
   .cat-tab.active { background: var(--maize); color: var(--dark); border-color: var(--maize); }
@@ -63,16 +70,31 @@
   /* PRODUCTS */
   .products-section { padding: 0 4vw 6rem; }
   .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1300px; margin: 0 auto; }
-  .product-card { background: var(--mid); border: 1px solid rgba(255,203,5,0.12); overflow: hidden; cursor: pointer; transition: transform 0.2s, border-color 0.2s; color: inherit; display: block; clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%); position: relative; }
+
+  /* FIX: cards use flex column so button always sticks to bottom */
+  .product-card {
+    background: var(--mid);
+    border: 1px solid rgba(255,203,5,0.12);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+    position: relative;
+  }
   .product-card:hover { transform: translateY(-4px); border-color: var(--maize); }
   .product-card:hover .product-img { transform: scale(1.04); }
-  .product-img-wrap { overflow: hidden; aspect-ratio: 1; background: #001122; position: relative; }
+  .product-img-wrap { overflow: hidden; aspect-ratio: 1; background: #001122; position: relative; flex-shrink: 0; }
   .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
   .product-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: rgba(255,203,5,0.2); }
   .sold-out-badge { position: absolute; top: 12px; right: 12px; background: #111; border: 1px solid var(--gray); color: var(--gray); font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.15em; padding: 0.25rem 0.6rem; }
-  .product-info { padding: 1.25rem; }
-  .product-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); margin-bottom: 0.4rem; line-height: 1.2; }
-  .product-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--maize); letter-spacing: 0.05em; }
+
+  /* FIX: info uses flex column, button at bottom */
+  .product-info { padding: 1.25rem; display: flex; flex-direction: column; flex: 1; }
+  .product-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.05rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); margin-bottom: 0.4rem; line-height: 1.25; }
+  .product-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--maize); letter-spacing: 0.05em; flex: 1; }
   .product-cta-btn { display: block; width: 100%; margin-top: 1rem; padding: 0.6rem; background: transparent; border: 1px solid var(--maize); color: var(--maize); font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.15em; text-align: center; transition: background 0.2s, color 0.2s; cursor: pointer; }
   .product-card:hover .product-cta-btn { background: var(--maize); color: var(--dark); }
   .product-card.is-sold-out .product-cta-btn { border-color: var(--gray); color: var(--gray); }
@@ -83,33 +105,45 @@
   .spin { display: inline-block; width: 40px; height: 40px; border: 3px solid rgba(255,203,5,0.2); border-top-color: var(--maize); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 1rem; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* MODAL */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+  /* MODAL — wider, dynamic */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
   .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal { background: var(--mid); border: 1px solid rgba(255,203,5,0.2); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; position: relative; clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%); transform: translateY(20px); transition: transform 0.25s; }
+  .modal {
+    background: var(--mid);
+    border: 1px solid rgba(255,203,5,0.2);
+    width: min(960px, 100%);
+    max-height: 88vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+    transform: translateY(20px);
+    transition: transform 0.25s;
+  }
   .modal-overlay.open .modal { transform: translateY(0); }
-  .modal-img-section { background: #001122; position: relative; min-height: 400px; }
-  .modal-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .modal-img-placeholder { width: 100%; height: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 6rem; color: rgba(255,203,5,0.15); }
-  .modal-info { padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
-  .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,203,5,0.3); color: var(--white); font-size: 1.2rem; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: background 0.2s; line-height: 1; }
+  .modal-img-section { background: #001122; position: relative; min-height: 420px; display: flex; flex-direction: column; }
+  .modal-main-img-wrap { flex: 1; overflow: hidden; }
+  .modal-img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 360px; }
+  .modal-img-placeholder { width: 100%; min-height: 420px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 6rem; color: rgba(255,203,5,0.15); }
+  .modal-thumbs { display: flex; gap: 0.5rem; padding: 0.75rem; background: rgba(0,0,0,0.4); flex-wrap: wrap; }
+  .modal-thumb { width: 58px; height: 58px; object-fit: cover; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s; opacity: 0.65; flex-shrink: 0; }
+  .modal-thumb:hover, .modal-thumb.active { border-color: var(--maize); opacity: 1; }
+
+  .modal-info { padding: 2.5rem 2.5rem 2rem; display: flex; flex-direction: column; gap: 1.25rem; overflow-y: auto; }
+  .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,203,5,0.3); color: var(--white); font-size: 1rem; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: background 0.2s; line-height: 1; }
   .modal-close:hover { background: var(--anti); border-color: var(--anti); }
-  .modal-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.05em; color: var(--white); line-height: 1.1; }
-  .modal-price { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--maize); letter-spacing: 0.05em; }
+  .modal-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.04em; color: var(--white); line-height: 1.1; padding-right: 2rem; }
+  .modal-price { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--maize); letter-spacing: 0.05em; }
   .modal-desc { font-family: 'Barlow', sans-serif; font-size: 0.95rem; line-height: 1.7; color: #aabbcc; }
-  .modal-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.4rem; }
+  .modal-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.5rem; }
   .variant-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .variant-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; padding: 0.4rem 0.9rem; background: transparent; border: 1px solid rgba(255,203,5,0.25); color: var(--white); cursor: pointer; transition: all 0.15s; }
+  .variant-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; padding: 0.4rem 0.9rem; background: transparent; border: 1px solid rgba(255,203,5,0.25); color: var(--white); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
   .variant-btn:hover { border-color: var(--maize); }
   .variant-btn.selected { background: var(--maize); color: var(--dark); border-color: var(--maize); }
   .modal-buy-btn { display: block; width: 100%; padding: 1rem; background: var(--maize); color: var(--dark); font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.15em; text-align: center; text-decoration: none; margin-top: auto; transition: background 0.2s; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); }
   .modal-buy-btn:hover { background: #ffe640; }
-  .modal-sold-out { display: block; width: 100%; padding: 1rem; background: #1a1a1a; color: var(--gray); font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.15em; text-align: center; margin-top: auto; border: 1px solid rgba(255,255,255,0.1); }
-
-  /* THUMBNAIL STRIP */
-  .modal-thumbs { display: flex; gap: 0.5rem; padding: 0.75rem; background: rgba(0,0,0,0.3); flex-wrap: wrap; }
-  .modal-thumb { width: 60px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s; opacity: 0.7; }
-  .modal-thumb:hover, .modal-thumb.active { border-color: var(--maize); opacity: 1; }
+  .modal-sold-out { display: block; width: 100%; padding: 1rem; background: #1a1a1a; color: var(--gray); font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.15em; text-align: center; margin-top: auto; border: 1px solid rgba(255,255,255,0.08); }
 
   /* MANIFESTO */
   .manifesto { background: var(--blue); padding: 6rem 4vw; text-align: center; position: relative; overflow: hidden; }
@@ -131,7 +165,7 @@
     .nav-links { display: none; }
     .hero-content { padding: 0 1.5rem; }
     .modal { grid-template-columns: 1fr; }
-    .modal-img-section { min-height: 260px; }
+    .modal-img-section { min-height: 280px; }
     footer { flex-direction: column; text-align: center; }
   }
 </style>
@@ -180,9 +214,14 @@
     <h2>THE <span class="accent">COLLECTION</span></h2>
     <p>Every purchase is a vote against ohio</p>
   </div>
-  <div class="category-tabs" id="category-tabs">
-    <button class="cat-tab active" data-slug="all">All</button>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="search-input" type="text" placeholder="Search products...">
   </div>
+
+  <div class="category-tabs" id="category-tabs"></div>
+
   <div class="products-section">
     <div class="products-grid" id="products-grid">
       <div class="loading-state"><div class="spin"></div><br>Loading the goods...</div>
@@ -228,7 +267,9 @@ const WORKER_URL = 'https://fuckohio-proxy.benkrapohl.workers.dev';
 const STORE_URL = 'https://shop.fuckohio.net';
 
 let allProducts = [];
-let currentSlug = 'all';
+let currentProducts = [];
+let currentSlug = null;
+let searchQuery = '';
 
 function sanitize(text) {
   return (text || '').replace(/Ohio/g, 'ohio').replace(/OHIO/g, 'ohio');
@@ -237,7 +278,7 @@ function sanitize(text) {
 function stripHtml(html) {
   const tmp = document.createElement('div');
   tmp.innerHTML = html;
-  return tmp.textContent || tmp.innerText || '';
+  return (tmp.textContent || tmp.innerText || '').trim();
 }
 
 function formatPrice(variants) {
@@ -254,18 +295,32 @@ function isSoldOut(product) {
     (product.variants && product.variants.every(v => v.stock?.inStock === 0));
 }
 
+// FIX: extract string value from attribute which may be an object
+function attrVal(val) {
+  if (!val) return null;
+  if (typeof val === 'string') return val;
+  if (typeof val === 'object') return val.name || val.value || val.label || JSON.stringify(val);
+  return String(val);
+}
+
+function getVariantOptions(variants, key) {
+  if (!variants) return [];
+  const vals = variants.map(v => attrVal(v.attributes?.[key])).filter(Boolean);
+  return [...new Set(vals)];
+}
+
 function renderProducts(products) {
   const grid = document.getElementById('products-grid');
   if (!products || !products.length) {
-    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;font-family:'Barlow Condensed',sans-serif;color:var(--gray);font-size:1.2rem;letter-spacing:0.1em">No products in this category yet.</div>`;
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;font-family:'Barlow Condensed',sans-serif;color:var(--gray);font-size:1.2rem;letter-spacing:0.1em">No products found.</div>`;
     return;
   }
   grid.innerHTML = products.map((p, i) => {
     const name = sanitize(p.name || 'Product');
     const price = formatPrice(p.variants);
-    const img = p.images && p.images[0] ? p.images[0].url : null;
+    const img = p.images?.[0]?.url;
     const soldOut = isSoldOut(p);
-    return `<div class="product-card${soldOut ? ' is-sold-out' : ''}" onclick="openModal(${i})">
+    return `<div class="product-card${soldOut ? ' is-sold-out' : ''}" onclick="openModal('${p.id}')">
       <div class="product-img-wrap">
         ${img ? `<img class="product-img" src="${img}" alt="${name}" loading="lazy">` : `<div class="product-img-placeholder">✕</div>`}
         ${soldOut ? `<div class="sold-out-badge">Sold Out</div>` : ''}
@@ -279,8 +334,22 @@ function renderProducts(products) {
   }).join('');
 }
 
-function openModal(index) {
-  const p = currentProducts[index];
+function applyFilters() {
+  let filtered = currentProducts;
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(p => (p.name || '').toLowerCase().includes(q));
+  }
+  renderProducts(filtered);
+}
+
+document.getElementById('search-input').addEventListener('input', function() {
+  searchQuery = this.value.trim();
+  applyFilters();
+});
+
+function openModal(productId) {
+  const p = allProducts.find(x => x.id === productId) || currentProducts.find(x => x.id === productId);
   if (!p) return;
 
   const name = sanitize(p.name || 'Product');
@@ -290,42 +359,40 @@ function openModal(index) {
   const url = p.slug ? STORE_URL + '/products/' + p.slug : STORE_URL;
   const images = p.images || [];
 
+  const sizes = getVariantOptions(p.variants, 'size');
+  const colors = getVariantOptions(p.variants, 'color');
+
   // Image section
   const imgSection = document.getElementById('modal-img-section');
   if (images.length > 0) {
     imgSection.innerHTML = `
-      <img class="modal-img" id="modal-main-img" src="${images[0].url}" alt="${name}">
+      <div class="modal-main-img-wrap">
+        <img class="modal-img" id="modal-main-img" src="${images[0].url}" alt="${name}">
+      </div>
       ${images.length > 1 ? `<div class="modal-thumbs">${images.map((img, i) =>
         `<img class="modal-thumb${i === 0 ? ' active' : ''}" src="${img.url}" onclick="switchImg('${img.url}', this)">`
-      ).join('')}</div>` : ''}
-    `;
+      ).join('')}</div>` : ''}`;
   } else {
     imgSection.innerHTML = `<div class="modal-img-placeholder">✕</div>`;
   }
 
-  // Get unique sizes and colors from variants
-  const sizes = [...new Set(p.variants?.map(v => v.attributes?.size).filter(Boolean))];
-  const colors = [...new Set(p.variants?.map(v => v.attributes?.color).filter(Boolean))];
-
   // Info section
-  const infoSection = document.getElementById('modal-info');
-  infoSection.innerHTML = `
+  document.getElementById('modal-info').innerHTML = `
     <div class="modal-name">${name}</div>
     ${price ? `<div class="modal-price">${price}</div>` : ''}
-    ${desc ? `<div class="modal-desc">${desc.slice(0, 400)}${desc.length > 400 ? '...' : ''}</div>` : ''}
+    ${desc ? `<div class="modal-desc">${desc.slice(0, 500)}${desc.length > 500 ? '...' : ''}</div>` : ''}
     ${colors.length ? `<div>
       <div class="modal-label">Color</div>
-      <div class="variant-group">${colors.map(c => `<button class="variant-btn" onclick="selectVariant(this, 'color')">${c}</button>`).join('')}</div>
+      <div class="variant-group">${colors.map(c => `<button class="variant-btn" onclick="selectVariant(this)">${c}</button>`).join('')}</div>
     </div>` : ''}
     ${sizes.length ? `<div>
       <div class="modal-label">Size</div>
-      <div class="variant-group">${sizes.map(s => `<button class="variant-btn" onclick="selectVariant(this, 'size')">${s}</button>`).join('')}</div>
+      <div class="variant-group">${sizes.map(s => `<button class="variant-btn" onclick="selectVariant(this)">${s}</button>`).join('')}</div>
     </div>` : ''}
     ${soldOut
       ? `<div class="modal-sold-out">Sold Out</div>`
       : `<a class="modal-buy-btn" href="${url}" target="_blank">Buy Now →</a>`
-    }
-  `;
+    }`;
 
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -337,7 +404,7 @@ function switchImg(url, thumb) {
   thumb.classList.add('active');
 }
 
-function selectVariant(btn, type) {
+function selectVariant(btn) {
   btn.closest('.variant-group').querySelectorAll('.variant-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
 }
@@ -351,11 +418,7 @@ document.getElementById('modal-close').addEventListener('click', closeModal);
 document.getElementById('modal-overlay').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
-});
-
-let currentProducts = [];
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 async function loadCollections() {
   try {
@@ -363,6 +426,15 @@ async function loadCollections() {
     const data = await res.json();
     const collections = data.results || [];
     const tabs = document.getElementById('category-tabs');
+
+    // All tab
+    const allBtn = document.createElement('button');
+    allBtn.className = 'cat-tab active';
+    allBtn.dataset.slug = 'all';
+    allBtn.textContent = 'All Products';
+    allBtn.addEventListener('click', () => switchCategory('all', allBtn));
+    tabs.appendChild(allBtn);
+
     collections.forEach(col => {
       const btn = document.createElement('button');
       btn.className = 'cat-tab';
@@ -378,6 +450,8 @@ async function switchCategory(slug, btn) {
   document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
   currentSlug = slug;
+  searchQuery = '';
+  document.getElementById('search-input').value = '';
 
   const grid = document.getElementById('products-grid');
   grid.innerHTML = `<div class="loading-state"><div class="spin"></div><br>Loading...</div>`;
@@ -390,7 +464,7 @@ async function switchCategory(slug, btn) {
       const data = await res.json();
       currentProducts = data.results || [];
     } catch(e) {
-      currentProducts = allProducts.filter(p => true);
+      currentProducts = [];
     }
   }
   renderProducts(currentProducts);
