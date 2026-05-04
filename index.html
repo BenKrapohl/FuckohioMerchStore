@@ -20,10 +20,10 @@
   body { background: var(--dark); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
 
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 60px; background: rgba(0,13,26,0.92); backdrop-filter: blur(10px); border-bottom: 2px solid var(--maize); }
-  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.12em; color: var(--maize); text-decoration: none; }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.12em; color: var(--maize); text-decoration: none; cursor: pointer; }
   .nav-logo span { color: var(--anti); }
   .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-  .nav-links a { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: color 0.2s; }
+  .nav-links a { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: color 0.2s; cursor: pointer; }
   .nav-links a:hover { color: var(--maize); }
 
   .hero { position: relative; height: 100vh; min-height: 600px; overflow: hidden; display: flex; align-items: center; }
@@ -36,11 +36,11 @@
   .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 13vw, 11rem); line-height: 0.9; letter-spacing: 0.03em; color: var(--white); margin-bottom: 1.5rem; opacity: 0; animation: fade-up 0.7s ease 0.35s both; }
   .hero-title .ohio-word { color: var(--anti); text-decoration: line-through; text-decoration-color: var(--maize); text-decoration-thickness: 4px; }
   .hero-subtitle { font-family: 'Barlow Condensed', sans-serif; font-weight: 400; font-size: 1.25rem; letter-spacing: 0.05em; color: #ccdae8; max-width: 420px; line-height: 1.5; margin-bottom: 2.5rem; opacity: 0; animation: fade-up 0.7s ease 0.5s both; }
-  .hero-cta { display: inline-block; background: var(--maize); color: var(--dark); font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.15em; padding: 1rem 2.5rem; text-decoration: none; transition: background 0.2s, transform 0.15s; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); opacity: 0; animation: fade-up 0.7s ease 0.65s both; }
+  .hero-cta { display: inline-block; background: var(--maize); color: var(--dark); font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.15em; padding: 1rem 2.5rem; text-decoration: none; transition: background 0.2s, transform 0.15s; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); opacity: 0; animation: fade-up 0.7s ease 0.65s both; cursor: pointer; border: none; }
   .hero-cta:hover { background: #ffe640; transform: translateY(-2px); }
 
   .marquee-strip { background: var(--maize); overflow: hidden; padding: 0.6rem 0; white-space: nowrap; }
-  .marquee-inner { display: inline-block; animation: marquee 18s linear infinite; }
+  .marquee-inner { display: inline-block; animation: marquee 22s linear infinite; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .marquee-inner span { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.2em; color: var(--blue); margin: 0 2rem; }
   .marquee-inner .dot { color: var(--anti); margin: 0 1.5rem; }
@@ -82,79 +82,31 @@
   .spin { display: inline-block; width: 40px; height: 40px; border: 3px solid rgba(255,203,5,0.2); border-top-color: var(--maize); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 1rem; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* MODAL — compact, no scroll on desktop */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
   .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal {
-    background: var(--mid);
-    border: 1px solid rgba(255,203,5,0.2);
-    width: min(880px, 100%);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
-    transform: translateY(20px);
-    transition: transform 0.25s;
-    max-height: 85vh;
-  }
+  .modal { background: var(--mid); border: 1px solid rgba(255,203,5,0.2); width: min(880px, 100%); display: grid; grid-template-columns: 1fr 1fr; position: relative; clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%); transform: translateY(20px); transition: transform 0.25s; max-height: 85vh; }
   .modal-overlay.open .modal { transform: translateY(0); }
-
-  /* Image side: fixed height, no scroll */
-  .modal-img-section {
-    background: #001122;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 0;
-  }
-  .modal-main-img-wrap {
-    flex: 1;
-    overflow: hidden;
-    min-height: 0;
-  }
-  .modal-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    background: #001122;
-  }
-  .modal-img-placeholder { width: 100%; height: 100%; min-height: 340px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 6rem; color: rgba(255,203,5,0.15); }
-
-  /* Only show color swatches as thumbnails, not all variants */
+  .modal-img-section { background: #001122; display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  .modal-main-img-wrap { flex: 1; overflow: hidden; min-height: 0; }
+  .modal-img { width: 100%; height: 100%; object-fit: contain; display: block; background: #001122; }
+  .modal-img-placeholder { width: 100%; min-height: 340px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 6rem; color: rgba(255,203,5,0.15); }
   .modal-color-swatches { display: flex; gap: 0.4rem; padding: 0.6rem 0.75rem; background: rgba(0,0,0,0.4); flex-wrap: wrap; }
-  .color-swatch {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: border-color 0.15s, transform 0.15s;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
+  .color-swatch { width: 36px; height: 36px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s, transform 0.15s; overflow: hidden; flex-shrink: 0; }
   .color-swatch img { width: 100%; height: 100%; object-fit: cover; }
   .color-swatch:hover { transform: scale(1.1); }
   .color-swatch.active { border-color: var(--maize); }
-
-  /* Info side: scrollable only if needed */
-  .modal-info {
-    padding: 2rem 2rem 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    overflow-y: auto;
-    max-height: 85vh;
-  }
+  .modal-info { padding: 2rem 2rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; overflow-y: auto; max-height: 85vh; }
   .modal-close { position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,203,5,0.3); color: var(--white); font-size: 1rem; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: background 0.2s; }
   .modal-close:hover { background: var(--anti); border-color: var(--anti); }
   .modal-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; color: var(--white); line-height: 1.1; padding-right: 2rem; }
-  .modal-price { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--maize); letter-spacing: 0.05em; }
+  .modal-price { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--maize); letter-spacing: 0.05em; transition: opacity 0.15s; }
   .modal-desc { font-family: 'Barlow', sans-serif; font-size: 0.9rem; line-height: 1.65; color: #aabbcc; }
   .modal-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.4rem; }
   .variant-group { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .variant-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; padding: 0.35rem 0.8rem; background: transparent; border: 1px solid rgba(255,203,5,0.25); color: var(--white); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
   .variant-btn:hover { border-color: var(--maize); }
   .variant-btn.selected { background: var(--maize); color: var(--dark); border-color: var(--maize); }
+  .variant-btn:disabled { opacity: 0.35; cursor: not-allowed; border-color: rgba(255,255,255,0.1); }
   .modal-buy-btn { display: block; width: 100%; padding: 0.9rem; background: var(--maize); color: var(--dark); font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.15em; text-align: center; text-decoration: none; margin-top: auto; transition: background 0.2s; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); }
   .modal-buy-btn:hover { background: #ffe640; }
   .modal-sold-out { display: block; width: 100%; padding: 0.9rem; background: #1a1a1a; color: var(--gray); font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.15em; text-align: center; margin-top: auto; border: 1px solid rgba(255,255,255,0.08); }
@@ -166,7 +118,7 @@
   .manifesto p { font-family: 'Barlow', sans-serif; font-size: 1.1rem; line-height: 1.8; color: #ccdae8; }
 
   footer { background: #000; border-top: 2px solid var(--maize); padding: 3rem 4vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--maize); letter-spacing: 0.1em; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--maize); letter-spacing: 0.1em; cursor: pointer; }
   .footer-logo span { color: var(--anti); }
   footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; color: var(--gray); letter-spacing: 0.08em; }
   .footer-links { display: flex; gap: 1.5rem; list-style: none; }
@@ -185,23 +137,23 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="#">FUCK <span>ohio</span></a>
+  <span class="nav-logo" onclick="scrollTo('hero')">FUCK <span>ohio</span></span>
   <ul class="nav-links">
-    <li><a href="#shop">Shop</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a onclick="scrollTo('shop')">Shop</a></li>
+    <li><a onclick="scrollTo('about')">About</a></li>
     <li><a href="https://www.fuckohio.net" target="_blank">fuckohio.net</a></li>
     <li><a href="https://shop.fuckohio.net" target="_blank">Full Store</a></li>
   </ul>
 </nav>
 
-<section class="hero">
+<section id="hero" class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Official Anti-ohio Merch</p>
     <h1 class="hero-title">FUCK<br><span class="ohio-word">ohio</span></h1>
     <p class="hero-subtitle">Real fans. Real merch. Zero respect for ohio or anything that comes from it.</p>
-    <a href="#shop" class="hero-cta">Shop the Collection</a>
+    <button class="hero-cta" onclick="scrollTo('shop')">Shop the Collection</button>
   </div>
 </section>
 
@@ -210,15 +162,15 @@
     <span>FUCK ohio</span><span class="dot">✕</span>
     <span>GO BLUE</span><span class="dot">✕</span>
     <span>ohio IS A MISTAKE</span><span class="dot">✕</span>
-    <span>NOT ohio STATE</span><span class="dot">✕</span>
-    <span>MICHIGAN FOREVER</span><span class="dot">✕</span>
-    <span>ohio WHO?</span><span class="dot">✕</span>
     <span>FUCK ohio</span><span class="dot">✕</span>
+    <span>ohio DOESN'T DESERVE CAPITALS</span><span class="dot">✕</span>
     <span>GO BLUE</span><span class="dot">✕</span>
+    <span>ohio STAYS LOSING</span><span class="dot">✕</span>
+    <span>FUCK ohio</span><span class="dot">✕</span>
     <span>ohio IS A MISTAKE</span><span class="dot">✕</span>
-    <span>NOT ohio STATE</span><span class="dot">✕</span>
-    <span>MICHIGAN FOREVER</span><span class="dot">✕</span>
-    <span>ohio WHO?</span><span class="dot">✕</span>
+    <span>GO BLUE</span><span class="dot">✕</span>
+    <span>ohio DOESN'T DESERVE CAPITALS</span><span class="dot">✕</span>
+    <span>ohio STAYS LOSING</span><span class="dot">✕</span>
   </div>
 </div>
 
@@ -255,16 +207,15 @@
 </section>
 
 <footer>
-  <div class="footer-logo">FUCK <span>ohio</span></div>
+  <span class="footer-logo" onclick="scrollTo('hero')">FUCK <span>ohio</span></span>
   <p>shop.fuckohio.net &nbsp;·&nbsp; Powered by Fourthwall</p>
   <ul class="footer-links">
     <li><a href="https://www.fuckohio.net" target="_blank">fuckohio.net</a></li>
     <li><a href="https://shop.fuckohio.net" target="_blank">Full Store</a></li>
-    <li><a href="#shop">Shop</a></li>
+    <li><a onclick="scrollTo('shop')" style="cursor:pointer">Shop</a></li>
   </ul>
 </footer>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal" id="modal">
     <button class="modal-close" id="modal-close">✕</button>
@@ -280,6 +231,15 @@ const STORE_URL = 'https://shop.fuckohio.net';
 let allProducts = [];
 let currentProducts = [];
 let searchQuery = '';
+let _currentVariants = [];
+let _selectedColor = null;
+let _selectedSize = null;
+
+// FIX 3: scroll within iframe — no anchor href
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 function sanitize(text) {
   return (text || '').replace(/Ohio/g, 'ohio').replace(/OHIO/g, 'ohio');
@@ -289,12 +249,15 @@ function stripHtml(html) {
   d.innerHTML = html;
   return (d.textContent || d.innerText || '').trim();
 }
+function formatPriceVal(val) {
+  if (!val) return null;
+  return '$' + (val > 999 ? val / 100 : val).toFixed(2);
+}
 function formatPrice(variants) {
   if (!variants?.length) return '';
   const prices = variants.map(v => v.unitPrice?.value || 0).filter(p => p > 0);
   if (!prices.length) return '';
-  const min = Math.min(...prices);
-  return '$' + (min > 999 ? min / 100 : min).toFixed(2);
+  return formatPriceVal(Math.min(...prices));
 }
 function isSoldOut(p) {
   return p.state?.type === 'SOLD_OUT' || (p.variants?.every(v => v.stock?.inStock === 0));
@@ -305,23 +268,40 @@ function attrVal(val) {
   if (typeof val === 'object') return val.name || val.value || val.label || null;
   return String(val);
 }
-
-// Build a map of color name -> first variant image url
 function buildColorImageMap(variants) {
   const map = {};
   if (!variants) return map;
   variants.forEach(v => {
     const color = attrVal(v.attributes?.color);
-    if (color && !map[color] && v.images?.[0]?.url) {
-      map[color] = v.images[0].url;
-    }
+    if (color && !map[color] && v.images?.[0]?.url) map[color] = v.images[0].url;
   });
   return map;
 }
-
 function getVariantOptions(variants, key) {
   if (!variants) return [];
   return [...new Set(variants.map(v => attrVal(v.attributes?.[key])).filter(Boolean))];
+}
+
+// FIX 1: find price for selected color+size combination
+function getPriceForSelection(variants, color, size) {
+  if (!variants?.length) return null;
+  let match = variants.find(v => {
+    const vc = attrVal(v.attributes?.color);
+    const vs = attrVal(v.attributes?.size);
+    return (!color || vc === color) && (!size || vs === size);
+  });
+  if (!match) match = variants[0];
+  return match?.unitPrice?.value || null;
+}
+
+function updateModalPrice() {
+  const priceEl = document.getElementById('modal-price-display');
+  if (!priceEl) return;
+  const val = getPriceForSelection(_currentVariants, _selectedColor, _selectedSize);
+  if (val) {
+    priceEl.textContent = formatPriceVal(val);
+    priceEl.style.opacity = '1';
+  }
 }
 
 function renderProducts(products) {
@@ -353,7 +333,7 @@ function applyFilters() {
   let filtered = currentProducts;
   if (searchQuery) {
     const q = searchQuery.toLowerCase();
-    filtered = filtered.filter(p => (p.name || '').toLowerCase().includes(q));
+    filtered = filtered.filter(p => (p.name||'').toLowerCase().includes(q));
   }
   renderProducts(filtered);
 }
@@ -368,55 +348,49 @@ function openModal(productId) {
   if (!p) return;
 
   const name = sanitize(p.name || 'Product');
-  const price = formatPrice(p.variants);
   const soldOut = isSoldOut(p);
   const desc = stripHtml(p.description || '');
   const url = p.slug ? STORE_URL + '/products/' + p.slug : STORE_URL;
-
-  // Use product-level hero image as default
   const heroImg = p.images?.[0]?.url;
   const colorImageMap = buildColorImageMap(p.variants);
   const colors = getVariantOptions(p.variants, 'color');
   const sizes = getVariantOptions(p.variants, 'size');
 
-  // Image section — hero shot + color swatches (not all variant photos)
-  const imgSection = document.getElementById('modal-img-section');
-  imgSection.innerHTML = `
+  _currentVariants = p.variants || [];
+  _selectedColor = colors[0] || null;
+  _selectedSize = null;
+  window._modalColorMap = colorImageMap;
+
+  const initialPrice = formatPriceVal(getPriceForSelection(_currentVariants, _selectedColor, _selectedSize));
+
+  document.getElementById('modal-img-section').innerHTML = `
     <div class="modal-main-img-wrap">
-      ${heroImg
-        ? `<img class="modal-img" id="modal-main-img" src="${heroImg}" alt="${name}">`
-        : `<div class="modal-img-placeholder">✕</div>`
-      }
+      ${heroImg ? `<img class="modal-img" id="modal-main-img" src="${colorImageMap[_selectedColor] || heroImg}" alt="${name}">` : `<div class="modal-img-placeholder">✕</div>`}
     </div>
     ${colors.length > 1 && Object.keys(colorImageMap).length > 0
       ? `<div class="modal-color-swatches" id="modal-color-swatches">
-          ${colors.map((c, i) => {
-            const swatchImg = colorImageMap[c];
-            return swatchImg
-              ? `<div class="color-swatch${i === 0 ? ' active' : ''}" title="${c}" onclick="selectColor('${c}', this)" data-color="${c}">
-                  <img src="${swatchImg}" alt="${c}">
-                </div>`
-              : '';
-          }).join('')}
+          ${colors.map((c, i) => colorImageMap[c]
+            ? `<div class="color-swatch${i===0?' active':''}" title="${c}" onclick="selectColorBtn(null,'${c}')" data-color="${c}"><img src="${colorImageMap[c]}" alt="${c}"></div>`
+            : ''
+          ).join('')}
         </div>`
       : ''
     }`;
 
-  // Info section
   document.getElementById('modal-info').innerHTML = `
     <div class="modal-name">${name}</div>
-    ${price ? `<div class="modal-price">${price}</div>` : ''}
-    ${desc ? `<div class="modal-desc">${desc.slice(0, 420)}${desc.length > 420 ? '...' : ''}</div>` : ''}
+    ${initialPrice ? `<div class="modal-price" id="modal-price-display">${initialPrice}</div>` : ''}
+    ${desc ? `<div class="modal-desc">${desc.slice(0,420)}${desc.length>420?'...':''}</div>` : ''}
     ${colors.length ? `<div>
       <div class="modal-label">Color</div>
       <div class="variant-group" id="modal-color-btns">
-        ${colors.map((c, i) => `<button class="variant-btn${i === 0 ? ' selected' : ''}" onclick="selectColorBtn(this, '${c}')" data-color="${c}">${c}</button>`).join('')}
+        ${colors.map((c,i) => `<button class="variant-btn${i===0?' selected':''}" onclick="selectColorBtn(this,'${c}')" data-color="${c}">${c}</button>`).join('')}
       </div>
     </div>` : ''}
     ${sizes.length ? `<div>
       <div class="modal-label">Size</div>
-      <div class="variant-group">
-        ${sizes.map(s => `<button class="variant-btn" onclick="selectVariant(this)">${s}</button>`).join('')}
+      <div class="variant-group" id="modal-size-btns">
+        ${sizes.map(s => `<button class="variant-btn" onclick="selectSizeBtn(this,'${s}')" data-size="${s}">${s}</button>`).join('')}
       </div>
     </div>` : ''}
     ${soldOut
@@ -424,53 +398,35 @@ function openModal(productId) {
       : `<a class="modal-buy-btn" href="${url}" target="_blank">Buy Now →</a>`
     }`;
 
-  // Store color map on window for use in callbacks
-  window._modalColorMap = colorImageMap;
-
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
-function selectColor(color, swatchEl) {
-  // Update main image
-  const imgUrl = window._modalColorMap?.[color];
-  if (imgUrl) {
-    const mainImg = document.getElementById('modal-main-img');
-    if (mainImg) mainImg.src = imgUrl;
-  }
-  // Update swatch active state
-  document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
-  swatchEl.classList.add('active');
-  // Sync color buttons
-  document.querySelectorAll('#modal-color-btns .variant-btn').forEach(b => {
-    b.classList.toggle('selected', b.dataset.color === color);
-  });
-}
-
 function selectColorBtn(btn, color) {
-  // Sync button state
-  btn.closest('.variant-group').querySelectorAll('.variant-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
+  _selectedColor = color;
+  // Update color buttons
+  document.querySelectorAll('#modal-color-btns .variant-btn').forEach(b => b.classList.toggle('selected', b.dataset.color === color));
+  // Update swatches
+  document.querySelectorAll('.color-swatch').forEach(s => s.classList.toggle('active', s.dataset.color === color));
   // Update image
   const imgUrl = window._modalColorMap?.[color];
-  if (imgUrl) {
-    const mainImg = document.getElementById('modal-main-img');
-    if (mainImg) mainImg.src = imgUrl;
-  }
-  // Sync swatches
-  document.querySelectorAll('.color-swatch').forEach(s => {
-    s.classList.toggle('active', s.dataset.color === color);
-  });
+  if (imgUrl) { const mi = document.getElementById('modal-main-img'); if (mi) mi.src = imgUrl; }
+  // Update price
+  updateModalPrice();
 }
 
-function selectVariant(btn) {
-  btn.closest('.variant-group').querySelectorAll('.variant-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
+function selectSizeBtn(btn, size) {
+  _selectedSize = size;
+  document.querySelectorAll('#modal-size-btns .variant-btn').forEach(b => b.classList.toggle('selected', b.dataset.size === size));
+  updateModalPrice();
 }
 
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
+  _currentVariants = [];
+  _selectedColor = null;
+  _selectedSize = null;
 }
 
 document.getElementById('modal-close').addEventListener('click', closeModal);
@@ -482,17 +438,15 @@ async function loadCollections() {
     const res = await fetch(WORKER_URL + '/collections');
     const data = await res.json();
     const collections = (data.results || []).filter(c =>
-      !['all', 'all products', 'all-products'].includes(c.slug?.toLowerCase()) &&
-      !['all', 'all products'].includes(c.name?.toLowerCase())
+      !['all','all products','all-products'].includes(c.slug?.toLowerCase()) &&
+      !['all','all products'].includes(c.name?.toLowerCase())
     );
     const tabs = document.getElementById('category-tabs');
-
     const allBtn = document.createElement('button');
     allBtn.className = 'cat-tab active';
     allBtn.textContent = 'All Products';
     allBtn.addEventListener('click', () => switchCategory('all', allBtn));
     tabs.appendChild(allBtn);
-
     collections.forEach(col => {
       const btn = document.createElement('button');
       btn.className = 'cat-tab';
@@ -509,14 +463,12 @@ async function switchCategory(slug, btn) {
   searchQuery = '';
   document.getElementById('search-input').value = '';
   document.getElementById('products-grid').innerHTML = `<div class="loading-state"><div class="spin"></div><br>Loading...</div>`;
-
   if (slug === 'all') {
     currentProducts = allProducts;
   } else {
     try {
       const res = await fetch(WORKER_URL + '/collection/' + slug);
-      const data = await res.json();
-      currentProducts = data.results || [];
+      currentProducts = (await res.json()).results || [];
     } catch(e) { currentProducts = []; }
   }
   renderProducts(currentProducts);
@@ -526,16 +478,13 @@ async function loadProducts() {
   try {
     const res = await fetch(WORKER_URL + '/');
     if (!res.ok) throw new Error('Worker returned ' + res.status);
-    const data = await res.json();
-    // Preserve Fourthwall ordering as returned by API
-    allProducts = data.results || [];
+    allProducts = (await res.json()).results || [];
     currentProducts = allProducts;
     renderProducts(allProducts);
   } catch(e) {
-    console.error('Product load failed:', e);
     document.getElementById('products-grid').innerHTML = `
       <div style="grid-column:1/-1;text-align:center;padding:3rem;border:1px dashed rgba(255,203,5,0.2)">
-        <p style="font-size:1.2rem;color:var(--maize);margin-bottom:1rem;font-family:'Barlow Condensed',sans-serif;">Browse the full collection on Fourthwall</p>
+        <p style="font-size:1.2rem;color:var(--maize);margin-bottom:1rem;font-family:'Barlow Condensed',sans-serif">Browse the full collection on Fourthwall</p>
         <a href="${STORE_URL}" target="_blank" class="hero-cta" style="display:inline-block;opacity:1;animation:none">View All Products</a>
       </div>`;
   }
