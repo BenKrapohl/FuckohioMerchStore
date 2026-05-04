@@ -14,7 +14,6 @@
     --mid: #001830;
     --white: #f5f5f0;
     --anti: #CC1100;
-    --anti-dark: #8B0000;
     --gray: #8899aa;
   }
 
@@ -27,7 +26,6 @@
     overflow-x: hidden;
   }
 
-  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -50,9 +48,7 @@
     text-decoration: none;
   }
 
-  .nav-logo span {
-    color: var(--anti);
-  }
+  .nav-logo span { color: var(--anti); }
 
   .nav-links {
     display: flex;
@@ -73,7 +69,6 @@
 
   .nav-links a:hover { color: var(--maize); }
 
-  /* ── HERO ── */
   .hero {
     position: relative;
     height: 100vh;
@@ -175,7 +170,6 @@
     letter-spacing: 0.15em;
     padding: 1rem 2.5rem;
     text-decoration: none;
-    text-transform: uppercase;
     transition: background 0.2s, transform 0.15s;
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
     opacity: 0;
@@ -187,7 +181,6 @@
     transform: translateY(-2px);
   }
 
-  /* ── MARQUEE STRIP ── */
   .marquee-strip {
     background: var(--maize);
     overflow: hidden;
@@ -218,7 +211,6 @@
     margin: 0 1.5rem;
   }
 
-  /* ── SECTION HEADERS ── */
   .section-header {
     text-align: center;
     padding: 5rem 2rem 3rem;
@@ -232,9 +224,7 @@
     line-height: 1;
   }
 
-  .section-header h2 .accent {
-    color: var(--maize);
-  }
+  .section-header h2 .accent { color: var(--maize); }
 
   .section-header p {
     font-family: 'Barlow Condensed', sans-serif;
@@ -244,7 +234,6 @@
     letter-spacing: 0.05em;
   }
 
-  /* ── PRODUCTS ── */
   .products-section {
     padding: 0 4vw 6rem;
   }
@@ -274,9 +263,7 @@
     border-color: var(--maize);
   }
 
-  .product-card:hover .product-img {
-    transform: scale(1.04);
-  }
+  .product-card:hover .product-img { transform: scale(1.04); }
 
   .product-img-wrap {
     overflow: hidden;
@@ -302,9 +289,7 @@
     color: rgba(255,203,5,0.2);
   }
 
-  .product-info {
-    padding: 1.25rem;
-  }
+  .product-info { padding: 1.25rem; }
 
   .product-name {
     font-family: 'Barlow Condensed', sans-serif;
@@ -336,7 +321,6 @@
     font-size: 1rem;
     letter-spacing: 0.15em;
     text-align: center;
-    cursor: pointer;
     transition: background 0.2s, color 0.2s;
   }
 
@@ -345,7 +329,6 @@
     color: var(--dark);
   }
 
-  /* Loading & Error States */
   .loading-state {
     text-align: center;
     padding: 4rem;
@@ -356,7 +339,7 @@
     grid-column: 1 / -1;
   }
 
-  .loading-state .spin {
+  .spin {
     display: inline-block;
     width: 40px; height: 40px;
     border: 3px solid rgba(255,203,5,0.2);
@@ -376,7 +359,6 @@
     font-family: 'Barlow Condensed', sans-serif;
   }
 
-  /* ── MANIFESTO SECTION ── */
   .manifesto {
     background: var(--blue);
     padding: 6rem 4vw;
@@ -422,7 +404,6 @@
     color: #ccdae8;
   }
 
-  /* ── FOOTER ── */
   footer {
     background: #000;
     border-top: 2px solid var(--maize);
@@ -467,7 +448,6 @@
 
   .footer-links a:hover { color: var(--maize); }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     .nav-links { display: none; }
     .hero-content { padding: 0 1.5rem; }
@@ -477,7 +457,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">FUCK <span>ohio</span></a>
   <ul class="nav-links">
@@ -487,7 +466,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
@@ -499,7 +477,6 @@
   </div>
 </section>
 
-<!-- MARQUEE -->
 <div class="marquee-strip">
   <div class="marquee-inner">
     <span>FUCK ohio</span><span class="dot">✕</span>
@@ -517,7 +494,6 @@
   </div>
 </div>
 
-<!-- SHOP -->
 <section id="shop">
   <div class="section-header">
     <h2>THE <span class="accent">COLLECTION</span></h2>
@@ -533,15 +509,14 @@
   </div>
 </section>
 
-<!-- MANIFESTO -->
 <section class="manifesto" id="about">
   <div class="manifesto-content">
     <h2>Why We Exist</h2>
     <p>
-      Because ohio exists, and someone has to say something about it. 
-      This isn't just merch — it's a statement. A lifestyle. A deep, 
-      abiding commitment to the truth that Michigan is better in every 
-      measurable way and that ohio should simply not. Whether you bleed 
+      Because ohio exists, and someone has to say something about it.
+      This isn't just merch — it's a statement. A lifestyle. A deep,
+      abiding commitment to the truth that Michigan is better in every
+      measurable way and that ohio should simply not. Whether you bleed
       maize & blue or just have good taste, this store is for you.
       <br><br>
       ohio does not deserve capitalization. They know what they did.
@@ -549,7 +524,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">FUCK <span>ohio</span></div>
   <p>shop.fuckohio.net &nbsp;·&nbsp; Powered by Fourthwall</p>
@@ -560,10 +534,9 @@
 </footer>
 
 <script>
-const STORE_TOKEN = 'ptkn_75039705-bba9-4875-af9f-6de6f70b867f';
+const WORKER_URL = 'https://fuckohio-proxy.benkrapohl.workers.dev/';
 const STORE_URL = 'https://shop.fuckohio.net';
 
-// All "ohio" must be lowercase
 function sanitize(text) {
   return (text || '').replace(/Ohio/g, 'ohio').replace(/OHIO/g, 'ohio').replace(/oHio/gi, 'ohio');
 }
@@ -581,7 +554,10 @@ function formatPrice(variants) {
 function renderProducts(products) {
   const grid = document.getElementById('products-grid');
   if (!products || !products.length) {
-    grid.innerHTML = '<div class="error-state"><p style="font-size:1.3rem;color:var(--maize)">No products found.</p><p style="color:var(--gray);margin-top:0.5rem">Check back soon — more anti-ohio gear is coming.</p></div>';
+    grid.innerHTML = `<div class="error-state">
+      <p style="font-size:1.3rem;color:var(--maize);margin-bottom:1rem">No products found.</p>
+      <p style="color:var(--gray)">Check back soon — more anti-ohio gear is coming.</p>
+    </div>`;
     return;
   }
 
@@ -591,50 +567,41 @@ function renderProducts(products) {
     const img = p.images && p.images[0] ? p.images[0].url : null;
     const url = p.slug ? STORE_URL + '/products/' + p.slug : STORE_URL;
 
-    return `
-      <a class="product-card" href="${url}" target="_blank">
-        <div class="product-img-wrap">
-          ${img 
-            ? `<img class="product-img" src="${img}" alt="${name}" loading="lazy">`
-            : `<div class="product-img-placeholder">✕</div>`
-          }
-        </div>
-        <div class="product-info">
-          <div class="product-name">${name}</div>
-          ${price ? `<div class="product-price">${price}</div>` : ''}
-          <div class="product-cta-btn">Shop Now</div>
-        </div>
-      </a>`;
+    return `<a class="product-card" href="${url}" target="_blank">
+      <div class="product-img-wrap">
+        ${img
+          ? `<img class="product-img" src="${img}" alt="${name}" loading="lazy">`
+          : `<div class="product-img-placeholder">✕</div>`
+        }
+      </div>
+      <div class="product-info">
+        <div class="product-name">${name}</div>
+        ${price ? `<div class="product-price">${price}</div>` : ''}
+        <div class="product-cta-btn">Shop Now</div>
+      </div>
+    </a>`;
   }).join('');
 }
 
 async function loadProducts() {
-  const endpoints = [
-    `https://storefront.fourthwall.com/v1/products?storefront_token=${STORE_TOKEN}`,
-    `https://api.fourthwall.com/open-api/storefront/v1/products?storefront_token=${STORE_TOKEN}`,
-  ];
-
-  for (const url of endpoints) {
-    try {
-      const res = await fetch(url, {
-        headers: { 'Accept': 'application/json' }
-      });
-      if (!res.ok) continue;
-      const data = await res.json();
-      const products = data.results || data.products || data.data || data;
-      if (Array.isArray(products)) {
-        renderProducts(products);
-        return;
-      }
-    } catch(e) { continue; }
+  try {
+    const res = await fetch(WORKER_URL);
+    if (!res.ok) throw new Error('Worker returned ' + res.status);
+    const data = await res.json();
+    const products = data.results || data.products || data.data || (Array.isArray(data) ? data : null);
+    if (products) {
+      renderProducts(products);
+      return;
+    }
+    throw new Error('Unexpected response shape');
+  } catch(e) {
+    console.error('Product load failed:', e);
+    document.getElementById('products-grid').innerHTML = `
+      <div class="error-state">
+        <p style="font-size:1.2rem;color:var(--maize);margin-bottom:1rem">Browse the full collection on Fourthwall</p>
+        <a href="${STORE_URL}" target="_blank" class="hero-cta" style="display:inline-block;opacity:1;animation:none">View All Products</a>
+      </div>`;
   }
-
-  // Fallback: direct to Fourthwall store
-  document.getElementById('products-grid').innerHTML = `
-    <div class="error-state">
-      <p style="font-size:1.2rem;color:var(--maize);margin-bottom:1rem">Browse the full collection on Fourthwall</p>
-      <a href="${STORE_URL}" target="_blank" class="hero-cta" style="display:inline-block">View All Products</a>
-    </div>`;
 }
 
 loadProducts();
