@@ -207,7 +207,8 @@ function formatPrice(variants) {
     .filter(p => p > 0);
   if (!prices.length) return '';
   const min = Math.min(...prices);
-  return '$' + (min).toFixed(2);
+  const price = min > 999 ? min / 100 : min;
+  return '$' + price.toFixed(2);
 }
 
 function isSoldOut(product) {
